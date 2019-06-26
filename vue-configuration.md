@@ -51,3 +51,21 @@ module.exports = {
   }
 }
 ```
+
+## access to PACKAGE_JSON ./vue.config.js
+
+```
+module.exports = {
+    ...,
+    configureWebpack: {
+        plugins: [
+          new webpack.DefinePlugin({
+            'process.env': {
+              PACKAGE_JSON: '"' + escape(JSON.stringify(require('./package.json'))) + '"'
+            }
+          })
+        ]
+    },
+
+    lintOnSave: true
+}
